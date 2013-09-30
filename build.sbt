@@ -2,7 +2,7 @@ name := "qiita-twitter-bot"
 
 version := "0.1-SNAPSHOT"
 
-scalaVersion := "2.10.2-RC1"
+scalaVersion := "2.10.3"
 
 organization := "com.github.xuwei-k"
 
@@ -17,9 +17,9 @@ resolvers ++= Seq(
 
 libraryDependencies ++= Seq(
   "org.twitter4j" % "twitter4j-core" % "3.0.3"
- ,"com.twitter" %% "util-eval" % "6.3.0"
- ,"org.json4s" %% "json4s-native" % "3.2.4"
- ,"org.specs2"  %% "specs2" % "1.14" % "test"
+ ,"com.twitter" %% "util-eval" % "6.5.0"
+ ,"org.json4s" %% "json4s-native" % "3.2.5"
+ ,"org.specs2"  %% "specs2" % "2.2.2" % "test"
 )
 
 scalacOptions ++= Seq("-deprecation", "-Xlint", "-language:_")
