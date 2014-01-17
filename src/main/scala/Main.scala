@@ -66,7 +66,7 @@ object Main{
       Item.apply
     }.filterNot{ e =>
       val a = blockUsers.contains(e.user)
-      if(a)println("block ! " + e)
+//      if(a)println("block ! " + e)
       a
     }
   }

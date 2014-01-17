@@ -1,3 +1,7 @@
 language: scala
 
-script: sh ./travis.sh
+scala:
+  - 2.10.3
+
+jdk:
+  - oraclejdk7

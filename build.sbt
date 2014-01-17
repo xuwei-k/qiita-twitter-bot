@@ -15,10 +15,12 @@ resolvers ++= Seq(
  ,"twitter4j" at "http://twitter4j.org/maven2"
 )
 
+val twitter4jVersion = "3.0.5"
+
 libraryDependencies ++= Seq(
-  "org.twitter4j" % "twitter4j-core" % "3.0.3"
+  "org.twitter4j" % "twitter4j-core" % twitter4jVersion
  ,"com.twitter" %% "util-eval" % "6.5.0"
- ,"org.json4s" %% "json4s-native" % "3.2.5"
+ ,"org.json4s" %% "json4s-native" % "3.2.6"
  ,"org.specs2"  %% "specs2" % "2.2.2" % "test"
 )
 
@@ -26,9 +28,9 @@ scalacOptions ++= Seq("-deprecation", "-Xlint", "-language:_")
 
 assemblySettings
 
-AssemblyKeys.jarName in AssemblyKeys.assembly <<= (name, version).map{ (name, version) =>
-  val df = new java.text.SimpleDateFormat("yyyy-MM-dd-HH-mm-ss")
-  <x>{name}-{df.format(new java.util.Date)}-{version}.jar</x>.text
+AssemblyKeys.jarName in AssemblyKeys.assembly <<= name.map{ name =>
+  val df = new java.text.SimpleDateFormat("yyyy-MM-dd-HH-mm")
+  s"""${name}-${df.format(new java.util.Date)}-twitter4j${twitter4jVersion}.jar"""
 }
 
 watchSources += file("config.scala")
