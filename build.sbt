@@ -37,3 +37,6 @@ watchSources += file("config.scala")
 
 sourcesInBase := false
 
+resourceGenerators in Compile += task(
+  Seq(baseDirectory.value / "build.sbt")
+)
