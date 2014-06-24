@@ -15,7 +15,7 @@ resolvers ++= Seq(
  ,"twitter4j" at "http://twitter4j.org/maven2"
 )
 
-val twitter4jVersion = "4.0.1"
+val twitter4jVersion = "4.0.2"
 
 libraryDependencies ++= Seq(
   "org.twitter4j" % "twitter4j-core" % twitter4jVersion
