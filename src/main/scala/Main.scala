@@ -1,7 +1,6 @@
 package qiita_twitter_bot
 
 import scala.util.control.Exception.allCatch
-import com.twitter.util.Eval
 import java.io.File
 import java.net.URL
 import org.json4s._
@@ -19,55 +18,55 @@ object Main{
     run(file)
   }
 
-  def run(file: File){
-    val conf = Eval[Config](file)
-    import conf._
+  def run(file: File): Unit = {
+    val env = Env.fromConfigFile(file)
+    import env._, env.config._
 
-    val db = new DB[ITEM_URL](dbSize)
-    val client = TweetClient(twitter)
-
-    def tweet(data: Seq[Item]){
-      data.reverseIterator.foreach{ entry =>
-        Thread.sleep(tweetInterval.inMillis)
+    val firstData = getEntries(tag, blockUsers)
+    db.insert(firstData.map{_.link}.toList)
+    printDateTime()
+    println("first insert data = " + firstData)
+    if (firstTweet) {
+      firstData.reverseIterator.foreach { entry =>
+        Thread.sleep(tweetInterval.toMillis)
         client.tweet(entry.tweetString(hashtags))
       }
     }
-
-    def entries() = {
-      val c = Eval[Config](file)
-      getEntries(c.tag, c.blockUsers)
-    }
-
-    val firstData = entries()
-    db.insert(firstData.map{_.link}:_*)
-    println("first insert data = " + firstData)
-    if(firstTweet){
-      tweet(firstData)
-    }
-
-    @annotation.tailrec
-    def _run(){
-      Thread.sleep(interval.inMillis)
-      allCatchPrintStackTrace{
-        val oldIds = db.selectAll
-        val newData = entries().filterNot{a => oldIds.contains(a.link)}
-        db.insert(newData.map{_.link}:_*)
-        tweet(newData)
-      }
-      _run()
-    }
-
-    _run()
+    loop(env)
   }
+
+  @annotation.tailrec
+  def loop(env: Env): Unit = {
+    import env._, env.config._
+    try {
+      Thread.sleep(interval.toMillis)
+      val oldIds = db.selectAll
+      val newData = getEntries(tag, blockUsers).filterNot{ a => oldIds.contains(a.link)}
+      db.insert(newData.map{_.link}.toList)
+      newData.reverseIterator.foreach { e =>
+        Thread.sleep(env.config.tweetInterval.toMillis)
+        env.client.tweet(e.tweetString(hashtags))
+      }
+    } catch {
+      case e: Throwable =>
+        printDateTime()
+        e.printStackTrace()
+    }
+    loop(env.reload)
+  }
+
 
   def getEntries(tag: String, blockUsers: Set[String] = Set.empty): Seq[Item] = {
     val in = StreamInput(new URL(qiita(tag)).openStream)
     JsonMethods.parse(in).children.map{
       Item.apply
     }.filterNot{ e =>
-      val a = blockUsers.contains(e.user)
-//      if(a)println("block ! " + e)
-      a
+      blockUsers.contains(e.user)
     }
+  }
+
+  def printDateTime(): Unit = {
+    val df = new java.text.SimpleDateFormat("yyyy-MM-dd-HH-mm")
+    println(df.format(new java.util.Date))
   }
 }

@@ -1,5 +1,6 @@
 import qiita_twitter_bot._
-import com.twitter.conversions.time._
+
+import scala.concurrent.duration._
 
 new Config{
   val tag = "scala"

@@ -2,7 +2,7 @@ name := "qiita-twitter-bot"
 
 version := "0.1-SNAPSHOT"
 
-scalaVersion := "2.10.4"
+scalaVersion := "2.11.2"
 
 organization := "com.github.xuwei-k"
 
@@ -17,14 +17,25 @@ resolvers ++= Seq(
 
 val twitter4jVersion = "4.0.2"
 
-libraryDependencies ++= Seq(
-  "org.twitter4j" % "twitter4j-core" % twitter4jVersion
- ,"com.twitter" %% "util-eval" % "6.18.0"
- ,"org.json4s" %% "json4s-native" % "3.2.10"
- ,"org.specs2"  %% "specs2" % "2.3.13" % "test"
+libraryDependencies ++= (
+  ("org.scala-lang" % "scala-compiler" % scalaVersion.value) ::
+  ("org.twitter4j" % "twitter4j-core" % twitter4jVersion) ::
+  ("org.json4s" %% "json4s-native" % "3.2.10") ::
+  ("org.specs2"  %% "specs2" % "2.4.1" % "test") ::
+  Nil
 )
 
-scalacOptions ++= Seq("-deprecation", "-Xlint", "-language:_")
+scalacOptions ++= (
+  "-deprecation" ::
+  "-Xlint" ::
+  "-language:postfixOps" ::
+  "-language:existentials" ::
+  "-language:higherKinds" ::
+  "-language:implicitConversions" ::
+  "-Ywarn-unused" ::
+  "-Ywarn-unused-import" ::
+  Nil
+)
 
 assemblySettings
 
