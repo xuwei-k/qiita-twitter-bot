@@ -24,7 +24,7 @@ object Item{
 
   private[this] val escapeMap = Map(
     "@" -> "",
-    "#" -> ""
+    "#" -> "♯"
   )
 
   def escape(str: String): String =
