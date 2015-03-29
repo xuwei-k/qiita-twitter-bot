@@ -15,7 +15,7 @@ resolvers ++= Seq(
  ,"twitter4j" at "http://twitter4j.org/maven2"
 )
 
-val twitter4jVersion = "4.0.2"
+val twitter4jVersion = "4.0.3"
 
 libraryDependencies ++= (
   ("org.scala-lang" % "scala-compiler" % scalaVersion.value) ::
