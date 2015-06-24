@@ -1,27 +1,24 @@
 package qiita_twitter_bot
 
-import org.specs2.Specification
+import org.junit.Test
 
-final class Spec extends Specification{ def is=
+final class Spec {
 
-  "create Item object" ! {
-    {item: Item =>
+  @Test
+  def `create Item objects`(): Unit = {
+    Main.getEntries("Scala").foreach{ item =>
       val str = item.tweetString(Set("Scala","Scalajp"))
       println(str)
 
-      {
-        item.link should be startWith "http"
-      }and{
-        str.size must be_<= (Item.LIMIT)
-      }and{
-        Item.escape(item.description) must not contain("#")
-      }
-    }.forall(Main.getEntries("Scala"))
-  } ^ "eval config.scala" ! {
+      assert(item.link startsWith "http")
+      assert(str.size <= Item.LIMIT)
+      assert(Item.escape(item.description).contains("#") == false)
+    }
+  }
+
+  @Test
+  def `eval config.scala`(): Unit = {
     Eval.fromFileName[Config](Main.defaultConfigName)
-    success
-  } ^ end
+  }
 
 }
-
-

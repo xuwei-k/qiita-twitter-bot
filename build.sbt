@@ -21,7 +21,7 @@ libraryDependencies ++= (
   ("org.scala-lang" % "scala-compiler" % scalaVersion.value) ::
   ("org.twitter4j" % "twitter4j-core" % twitter4jVersion) ::
   ("org.json4s" %% "json4s-native" % "3.2.10") ::
-  ("org.specs2"  %% "specs2" % "2.4.1" % "test") ::
+  ("com.novocode" % "junit-interface" % "0.11" % "test") ::
   Nil
 )
 
@@ -51,3 +51,5 @@ sourcesInBase := false
 resourceGenerators in Compile += task(
   Seq(baseDirectory.value / "build.sbt")
 )
+
+testOptions += Tests.Argument(TestFrameworks.JUnit, "-v")
