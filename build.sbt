@@ -2,7 +2,7 @@ name := "qiita-twitter-bot"
 
 version := "0.1-SNAPSHOT"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.0"
 
 organization := "com.github.xuwei-k"
 
@@ -20,7 +20,7 @@ val twitter4jVersion = "4.0.4"
 libraryDependencies ++= (
   ("org.scala-lang" % "scala-compiler" % scalaVersion.value) ::
   ("org.twitter4j" % "twitter4j-core" % twitter4jVersion) ::
-  ("org.json4s" %% "json4s-native" % "3.3.0") ::
+  ("org.json4s" %% "json4s-native" % "3.4.2") ::
   ("com.novocode" % "junit-interface" % "0.11" % "test") ::
   Nil
 )
@@ -45,11 +45,9 @@ Seq(Compile, Test).flatMap(c =>
   scalacOptions in (c, console) ~= {_.filterNot(unusedWarnings.toSet)}
 )
 
-assemblySettings
-
-AssemblyKeys.jarName in AssemblyKeys.assembly <<= name.map{ name =>
+assemblyJarName in assembly := {
   val df = new java.text.SimpleDateFormat("yyyy-MM-dd-HH-mm")
-  s"""${name}-${df.format(new java.util.Date)}-twitter4j-${twitter4jVersion}.jar"""
+  s"""${name.value}-${df.format(new java.util.Date)}-twitter4j-${twitter4jVersion}.jar"""
 }
 
 watchSources += file("config.scala")
