@@ -2,7 +2,7 @@ name := "qiita-twitter-bot"
 
 version := "0.1-SNAPSHOT"
 
-scalaVersion := "2.12.0"
+scalaVersion := "2.12.2"
 
 organization := "com.github.xuwei-k"
 
@@ -15,12 +15,12 @@ resolvers ++= Seq(
  ,"twitter4j" at "http://twitter4j.org/maven2"
 )
 
-val twitter4jVersion = "4.0.4"
+val twitter4jVersion = "4.0.6"
 
 libraryDependencies ++= (
   ("org.scala-lang" % "scala-compiler" % scalaVersion.value) ::
   ("org.twitter4j" % "twitter4j-core" % twitter4jVersion) ::
-  ("org.json4s" %% "json4s-native" % "3.4.2") ::
+  ("org.json4s" %% "json4s-native" % "3.5.2") ::
   ("com.novocode" % "junit-interface" % "0.11" % "test") ::
   Nil
 )
