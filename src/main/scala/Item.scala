@@ -33,7 +33,7 @@ object Item{
   def apply(x: JValue): Item = Item(
     (x \ "url").as[String],
     (x \ "title").as[String],
-    (x \ "raw_body").as[String],
-    (x \ "user" \ "url_name").as[String]
+    (x \ "body").as[String],
+    (x \ "user" \ "id").as[String]
   )
 }

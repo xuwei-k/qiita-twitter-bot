@@ -7,7 +7,7 @@ import org.json4s._
 import org.json4s.native.JsonMethods
 
 object Main{
-  val qiita = "https://qiita.com/api/v1/tags/" + (_: String) + "/items"
+  val qiita = "https://qiita.com/api/v2/tags/" + (_: String) + "/items"
 
   val defaultConfigName = "config.scala"
 
