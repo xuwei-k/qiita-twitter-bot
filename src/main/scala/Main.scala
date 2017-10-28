@@ -55,8 +55,8 @@ object Main{
 
 
   def getEntries(tag: String, blockUsers: Set[String] = Set.empty): Seq[Item] = {
-    val in = StreamInput(new URL(qiita(tag)).openStream)
-    JsonMethods.parse(in).children.map{
+    val json = scala.io.Source.fromURL(new URL(qiita(tag)), "UTF-8").mkString
+    JsonMethods.parse(json).children.map{
       Item.apply
     }.filterNot{ e =>
       blockUsers.contains(e.user)
