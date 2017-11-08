@@ -16,9 +16,22 @@ case class TweetClient(conf: TwitterSettings) {
     new TwitterFactory(c.build()).getInstance()
   }
 
-  def tweet(str: String): Unit = {
+  def tweet(str: String, charCount: Int, retryCharCount: Option[Int]): Unit = {
     allCatchPrintStackTrace {
-      t.updateStatus(str)
+      try {
+        t.updateStatus(str.take(charCount))
+      } catch {
+        case e: Throwable =>
+          retryCharCount match {
+            case Some(count) if charCount > count =>
+              Main.printDateTime()
+              println(e)
+              t.updateStatus(str.take(count))
+            case _ =>
+              Main.printDateTime()
+              e.printStackTrace()
+          }
+      }
     }
   }
 

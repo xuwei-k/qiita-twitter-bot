@@ -11,7 +11,6 @@ final class Spec {
       println(str)
 
       assert(item.link startsWith "http")
-      assert(str.size <= Item.LIMIT)
       assert(Item.escape(item.description).contains("#") == false)
     }
   }

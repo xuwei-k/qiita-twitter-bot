@@ -18,13 +18,11 @@ final case class Item private (
       escape(title),
       tags,
       escape(description)
-    ).mkString("\n").take(LIMIT)
+    ).mkString("\n")
   }
 }
 
 object Item {
-  final val LIMIT = 140
-
   private[this] val escapeMap = Map(
     "@" -> "",
     "#" -> "♯"
