@@ -37,4 +37,40 @@ object Item {
     (x \ "body").as[String],
     (x \ "user" \ "id").as[String]
   )
+
+  def isASCII(c: Char): Boolean = {
+    (0x0 <= c) && (c <= 0x7f)
+  }
+
+  def resizeTweetString(tweet: String): String = {
+    if (tweet.length <= 140) {
+      tweet
+    } else {
+      val original = tweet.toCharArray
+      val buf = new java.lang.StringBuilder()
+      @annotation.tailrec
+      def loop(i: Int, size: Int): Unit = {
+        original.lift.apply(i) match {
+          case Some(char) =>
+            val nextSize = size + {
+              if (isASCII(original(i))) {
+                1
+              } else {
+                2
+              }
+            }
+            if (nextSize > 280) {
+              ()
+            } else {
+              buf.append(char)
+              loop(i + 1, nextSize)
+            }
+          case None =>
+            ()
+        }
+      }
+      loop(0, 0)
+      buf.toString
+    }
+  }
 }

@@ -11,8 +11,9 @@ abstract class Config {
   val dbSize: Int = 100
   val firstTweetCount: Int
   val blockUsers: Set[String] = Set.empty
-  val charCount: Int = 280
   val retryCharCount: Option[Int] = Some(140)
+  def resizeTweetString(tweet: String): String =
+    Item.resizeTweetString(tweet)
 }
 
 abstract class TwitterSettings {

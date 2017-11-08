@@ -29,7 +29,7 @@ object Main {
     println("first insert data = " + firstData)
     firstData.take(firstTweetCount).reverseIterator.foreach { entry =>
       Thread.sleep(tweetInterval.toMillis)
-      client.tweet(entry.tweetString(hashtags), charCount, retryCharCount)
+      client.tweet(config.resizeTweetString(entry.tweetString(hashtags)), retryCharCount)
     }
     loop(env)
   }
@@ -47,7 +47,7 @@ object Main {
       db.insert(newData.map { _.link }.toList)
       newData.reverseIterator.foreach { e =>
         Thread.sleep(env.config.tweetInterval.toMillis)
-        env.client.tweet(e.tweetString(hashtags), charCount, retryCharCount)
+        env.client.tweet(config.resizeTweetString(e.tweetString(hashtags)), retryCharCount)
       }
     } catch {
       case e: Throwable =>
