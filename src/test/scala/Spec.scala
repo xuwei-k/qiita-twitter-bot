@@ -6,8 +6,8 @@ final class Spec {
 
   @Test
   def `create Item objects`(): Unit = {
-    Main.getEntries("Scala").foreach{ item =>
-      val str = item.tweetString(Set("Scala","Scalajp"))
+    Main.getEntries("Scala").foreach { item =>
+      val str = item.tweetString(Set("Scala", "Scalajp"))
       println(str)
 
       assert(item.link startsWith "http")

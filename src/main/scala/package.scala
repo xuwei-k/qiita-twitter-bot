@@ -1,9 +1,9 @@
-package object qiita_twitter_bot{
+package object qiita_twitter_bot {
 
-  @inline def allCatchPrintStackTrace(body: => Any){
-    try{
+  @inline def allCatchPrintStackTrace(body: => Any) {
+    try {
       val _ = body
-    }catch{
+    } catch {
       case e: Throwable =>
         Main.printDateTime()
         e.printStackTrace()

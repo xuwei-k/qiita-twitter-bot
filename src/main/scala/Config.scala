@@ -2,7 +2,7 @@ package qiita_twitter_bot
 
 import scala.concurrent.duration._
 
-abstract class Config{
+abstract class Config {
   val twitter: TwitterSettings
   def tag: String
   val hashtags: Set[String] = Set(tag)
@@ -13,10 +13,9 @@ abstract class Config{
   val blockUsers: Set[String] = Set.empty
 }
 
-abstract class TwitterSettings{
+abstract class TwitterSettings {
   val consumerKey: String
   val consumerSecret: String
   val accessToken: String
   val accessTokenSecret: String
 }
-

@@ -3,11 +3,11 @@ package qiita_twitter_bot
 import twitter4j._
 import twitter4j.conf._
 
-case class TweetClient(conf:TwitterSettings) {
+case class TweetClient(conf: TwitterSettings) {
 
   val t = {
     val c = new ConfigurationBuilder
-      c.setDebugEnabled(true)
+    c.setDebugEnabled(true)
       .setOAuthConsumerKey(conf.consumerKey)
       .setOAuthConsumerSecret(conf.consumerSecret)
       .setOAuthAccessToken(conf.accessToken)
@@ -16,12 +16,10 @@ case class TweetClient(conf:TwitterSettings) {
     new TwitterFactory(c.build()).getInstance()
   }
 
-  def tweet(str:String){
-    allCatchPrintStackTrace{
+  def tweet(str: String) {
+    allCatchPrintStackTrace {
       t.updateStatus(str)
     }
   }
 
 }
-
-
