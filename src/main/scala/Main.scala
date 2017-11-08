@@ -11,7 +11,7 @@ object Main {
 
   val defaultConfigName = "config.scala"
 
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
     val file = new File(
       allCatch.opt(args.head).getOrElse(defaultConfigName)
     )

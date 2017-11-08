@@ -1,6 +1,6 @@
 package object qiita_twitter_bot {
 
-  @inline def allCatchPrintStackTrace(body: => Any) {
+  @inline def allCatchPrintStackTrace(body: => Any): Unit = {
     try {
       val _ = body
     } catch {

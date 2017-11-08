@@ -11,12 +11,12 @@ case class TweetClient(conf: TwitterSettings) {
       .setOAuthConsumerKey(conf.consumerKey)
       .setOAuthConsumerSecret(conf.consumerSecret)
       .setOAuthAccessToken(conf.accessToken)
-      .setOAuthAccessTokenSecret(conf.accessTokenSecret);
+      .setOAuthAccessTokenSecret(conf.accessTokenSecret)
 
     new TwitterFactory(c.build()).getInstance()
   }
 
-  def tweet(str: String) {
+  def tweet(str: String): Unit = {
     allCatchPrintStackTrace {
       t.updateStatus(str)
     }
