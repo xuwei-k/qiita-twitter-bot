@@ -6,7 +6,7 @@ jdk:
   - oraclejdk8
 
 script:
-  - sbt scalafmt::test test:scalafmt::test sbt:scalafmt::test test
+  - sbt scalafmt::test test:scalafmt::test sbt:scalafmt::test assembly
 
 cache:
   directories:
