@@ -15,12 +15,12 @@ resolvers ++= Seq(
   "twitter4j" at "http://twitter4j.org/maven2"
 )
 
-val twitter4jVersion = "4.0.6"
+val twitter4jVersion = "4.0.7"
 
 libraryDependencies ++= (
   ("org.scala-lang" % "scala-compiler" % scalaVersion.value) ::
     ("org.twitter4j" % "twitter4j-core" % twitter4jVersion) ::
-    ("org.json4s" %% "json4s-native" % "3.5.3") ::
+    ("org.json4s" %% "json4s-native" % "3.5.4") ::
     ("com.novocode" % "junit-interface" % "0.11" % "test") ::
     Nil
 )
