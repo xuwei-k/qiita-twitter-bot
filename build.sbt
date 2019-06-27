@@ -20,7 +20,7 @@ val twitter4jVersion = "4.0.7"
 libraryDependencies ++= (
   ("org.scala-lang" % "scala-compiler" % scalaVersion.value) ::
     ("org.twitter4j" % "twitter4j-core" % twitter4jVersion) ::
-    ("org.json4s" %% "json4s-native" % "3.6.6") ::
+    ("org.json4s" %% "json4s-native" % "3.6.7") ::
     ("com.novocode" % "junit-interface" % "0.11" % "test") ::
     Nil
 )
