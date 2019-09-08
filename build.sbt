@@ -11,7 +11,6 @@ licenses += ("MIT License", url("http://opensource.org/licenses/MIT"))
 homepage := Some(url("https://github.com/xuwei-k/qiita-twitter-bot"))
 
 resolvers ++= Seq(
-  Opts.resolver.sonatypeReleases,
   "twitter4j" at "http://twitter4j.org/maven2"
 )
 
