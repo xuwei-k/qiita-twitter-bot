@@ -1,2 +1,2 @@
-# qiita twitter bot[![Build Status](https://secure.travis-ci.org/xuwei-k/qiita-twitter-bot.png)](http://travis-ci.org/xuwei-k/qiita-twitter-bot)
+# qiita twitter bot[![Build Status](https://travis-ci.com/xuwei-k/qiita-twitter-bot.svg)](http://travis-ci.com/xuwei-k/qiita-twitter-bot)
 
