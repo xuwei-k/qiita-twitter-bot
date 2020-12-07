@@ -10,10 +10,6 @@ licenses += ("MIT License", url("http://opensource.org/licenses/MIT"))
 
 homepage := Some(url("https://github.com/xuwei-k/qiita-twitter-bot"))
 
-resolvers ++= Seq(
-  "twitter4j" at "http://twitter4j.org/maven2"
-)
-
 val twitter4jVersion = "4.0.7"
 
 libraryDependencies ++= (
