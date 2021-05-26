@@ -1,7 +1,9 @@
 package qiita_twitter_bot
 
 import org.json4s.JValue
+import org.json4s.ReaderSyntax
 import org.json4s.DefaultReaders._
+import org.json4s.MonadicJValue._
 
 final case class Item private (
   link: ITEM_URL,
@@ -30,6 +32,9 @@ object Item {
 
   def escape(str: String): String =
     escapeMap.foldLeft(str) { case (s, (k, v)) => s.replace(k, v) }
+
+  private[this] implicit def asReaderSyntax(j: JValue): ReaderSyntax =
+    new ReaderSyntax(j)
 
   def apply(x: JValue): Item = Item(
     (x \ "url").as[String],
