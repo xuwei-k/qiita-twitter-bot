@@ -32,9 +32,9 @@ scalacOptions ++= (
     Nil
 ) ::: unusedWarnings
 
-Seq(Compile, Test).flatMap(c => scalacOptions in (c, console) ~= { _.filterNot(unusedWarnings.toSet) })
+Seq(Compile, Test).flatMap(c => c / console / scalacOptions ~= { _.filterNot(unusedWarnings.toSet) })
 
-assemblyJarName in assembly := {
+(assembly / assemblyJarName) := {
   val df = new java.text.SimpleDateFormat("yyyy-MM-dd-HH-mm")
   s"""${name.value}-${df.format(new java.util.Date)}-twitter4j-${twitter4jVersion}.jar"""
 }
@@ -43,7 +43,7 @@ watchSources += file("config.scala")
 
 sourcesInBase := false
 
-resourceGenerators in Compile += task(
+(Compile / resourceGenerators) += task(
   Seq(baseDirectory.value / "build.sbt")
 )
 
