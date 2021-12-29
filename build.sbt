@@ -16,7 +16,7 @@ libraryDependencies ++= (
   ("org.scala-lang" % "scala-compiler" % scalaVersion.value) ::
     ("org.twitter4j" % "twitter4j-core" % twitter4jVersion) ::
     ("org.json4s" %% "json4s-native-core" % "4.0.3") ::
-    ("com.github.sbt" % "junit-interface" % "0.13.2" % "test") ::
+    ("com.github.sbt" % "junit-interface" % "0.13.3" % "test") ::
     Nil
 )
 
