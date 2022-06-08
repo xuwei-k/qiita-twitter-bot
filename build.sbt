@@ -2,7 +2,7 @@ name := "qiita-twitter-bot"
 
 version := "0.1-SNAPSHOT"
 
-scalaVersion := "2.12.15"
+scalaVersion := "2.12.16"
 
 organization := "com.github.xuwei-k"
 
@@ -15,7 +15,7 @@ val twitter4jVersion = "4.0.7"
 libraryDependencies ++= (
   ("org.scala-lang" % "scala-compiler" % scalaVersion.value) ::
     ("org.twitter4j" % "twitter4j-core" % twitter4jVersion) ::
-    ("org.json4s" %% "json4s-native-core" % "4.0.3") ::
+    ("org.json4s" %% "json4s-native-core" % "4.0.5") ::
     ("com.github.sbt" % "junit-interface" % "0.13.3" % "test") ::
     Nil
 )
