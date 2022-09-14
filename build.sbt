@@ -2,7 +2,7 @@ name := "qiita-twitter-bot"
 
 version := "0.1-SNAPSHOT"
 
-scalaVersion := "2.12.17"
+scalaVersion := "2.13.8"
 
 organization := "com.github.xuwei-k"
 
