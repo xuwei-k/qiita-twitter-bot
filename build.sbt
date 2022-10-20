@@ -10,7 +10,7 @@ licenses += ("MIT License", url("http://opensource.org/licenses/MIT"))
 
 homepage := Some(url("https://github.com/xuwei-k/qiita-twitter-bot"))
 
-val twitter4jVersion = "4.0.7"
+val twitter4jVersion = "4.1.1"
 
 libraryDependencies ++= (
   ("org.scala-lang" % "scala-compiler" % scalaVersion.value) ::
